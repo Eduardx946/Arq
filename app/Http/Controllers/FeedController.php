@@ -19,7 +19,8 @@ class FeedController extends Controller
         //return view ('feed');
         $publicacao = Publicacao::get();
 
-        return view ('feed', compact('publicacao'));
+        //return view ('feed', compact('publicacao'));
+        return view ('feed', ['publicacoes' => $publicacao]);
     }
 
     /**

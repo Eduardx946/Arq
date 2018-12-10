@@ -56,7 +56,7 @@ class TextoController extends Controller
         // from Model
         $text->save ();
 
-        return redirect()->to (route('texto.inicio'));
+        return redirect()->to (route('feed.inicio'));
     }
 
     /**

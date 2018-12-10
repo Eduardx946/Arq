@@ -27,7 +27,29 @@ class HomeController extends Controller
         return view('home');
     }
 
-   
+   public function create(Request $request) {
+
+   }
+
+   public function store(Request $request) {
+    
+   }
+
+   public function show(Request $request) {
+    
+   }
+
+   public function update(Request $request) {
+    
+   }
+
+   public function destroy(Request $request) {
+    
+   }
+    
+    public function edit(Request $request) {
+    
+   }
 
     public function adicionartexto(Request $dados)
     {

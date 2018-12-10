@@ -100,9 +100,26 @@ Route::resource('home', 'HomeController',[
 	]
 ]);
 
+Route::resource('dev', 'DevController',[ 
+	'names' => [
+		'index' => 'dev',
+		'create'=> 'dev.criar',
+		'store' => 'dev.salvar',
+		'show' => 'dev.mostrar',
+		'update'=> 'dev.atualizar',
+		'destroy'=> 'dev.remover',
+		'edit' => 'dev.editar'
+	]
+]);
+
+
+
+
 Route::auth();
 
-//Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/img/{nome}', 'FotoController@img')->name('img');
+
 
 //Route::get('/perfil', 'PerfilController@index')->name('perfil');
 

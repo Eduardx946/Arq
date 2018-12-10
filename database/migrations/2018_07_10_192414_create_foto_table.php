@@ -15,6 +15,7 @@ class CreateFotoTable extends Migration
         Schema::create('fotos', function (Blueprint $table) {
             $table->increments('id');
             $table->binary('imagem');
+            $table->string('nome');
             $table->string('descricao',255);
             $table->integer('cod_usuario')->unsigned();
             $table->foreign('cod_usuario')->references('id')->on('users');

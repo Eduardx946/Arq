@@ -1,66 +1,69 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
-                        {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}">
+  <!--==========================
+    Header
+  ============================-->
+  <header id="header">
+    <div class="container-fluid">
 
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+      <div id="logo" class="pull-left">
+        <h1><a href="index.html" class="scrollto">ArqExplorer</a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="#intro"><img src="img/logo.png" alt="" title="" /></a>-->
+      </div>
 
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password">
+  </header><!-- #header -->
 
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
 
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember"> Remember Me
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
+  <main id="main">
 
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
+    <section id="contact" class="section-bg wow fadeInUp">
+      
+      <div class="container">
+        <div class="section-header">
+          <br><br><br><br><br>
+          <h3>Login</h3>
+          <br><br><br>
+        </div>
+      </div>
+
+        <div class="form">
+          <div id="sendmessage">Your message has been sent. Thank you!</div>
+          <div id="errormessage"></div>
+          <form method="POST" action="{{ url('/login') }}"ole="form" class="contactForm">
+             {{ csrf_field() }}
+            <center>
+            <div class="form-group col-md-6">
+              <input  placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" 
+                            id="email" type="email" class="form-control" name="email" value="{{ old('email') }}"/>
+              <div class="validation"></div>
+            </div>
+
+            <div class="form-group col-md-6">
+              <input  placeholder="Password" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" 
+                            id="password" type="password" class="form-control" name="password"/>
+              <div class="validation"></div>
+            </div>
+            </center>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">
                                     <i class="fa fa-btn fa-sign-in"></i> Login
                                 </button>
-
-                                <a class="btn btn-link" href="{{ url('/password/reset') }}">Forgot Your Password?</a>
-                            </div>
-                        </div>
-                    </form>
-                </div>
             </div>
+            <br>
+            <div class="text-center"><a href="{{ url('/register') }}">Não é registrado? Cadastre-se</a></div>
+          </form>
         </div>
-    </div>
-</div>
+        <br><br><br><br><br><br>
+      </div>
+    </section><!-- #contact -->
+
+  </main>
+
+
+
 @endsection

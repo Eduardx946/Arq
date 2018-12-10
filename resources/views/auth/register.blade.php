@@ -1,82 +1,112 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
-                        {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">Name</label>
+<!--==========================
+    Header
+  ============================-->
+  <header id="header">
+    <div class="container-fluid">
 
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}">
+      <div id="logo" class="pull-left">
+        <h1><a href="index.html" class="scrollto">ArqExplorer</a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="#intro"><img src="img/logo.png" alt="" title="" /></a>-->
+      </div>
 
-                                @if ($errors->has('name'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+  </header><!-- #header -->
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}">
 
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+  <main id="main">
 
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
+    <section id="contact" class="section-bg wow fadeInUp">
+      
+      <div class="container">
+        <div class="section-header">
+          <br><br><br><br>
+          <h3>Cadastro</h3>
+          <br><br><br>
+        </div>
+      </div>
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password">
+        <div class="form">
+          <div id="sendmessage">Your message has been sent. Thank you!</div>
+          <div id="errormessage"></div>
+          <form  method="POST" action="{{ url('/register') }}" role="form" class="contactForm">
+                                    {{ csrf_field() }}
 
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+            <center>
+              
+              <div class="form-group col-md-6">
+                <input  placeholder="Digite seu nome" data-rule="minlen:4" data-msg="Please enter at least 4 chars" 
+                            id="name" type="text" class="form-control" name="name" value="{{ old('name') }}"/>
+                <div class="validation"></div>
+              </div>
+              
+            
+            <div class="form-group col-md-6">
+              <input  placeholder="Digite seu email" data-rule="email" data-msg="Please enter a valid email" 
+                            id="email" type="email" class="form-control" name="email" value="{{ old('email') }}"/>
+              <div class="validation"></div>
+            </div>
 
-                        <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
+            <div class="form-group col-md-6">
+              <input  placeholder="Digite sua senha" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" 
+                            id="password" type="password" class="form-control" name="password"/>
+              <div class="validation"></div>
+            </div>
 
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation">
-
-                                @if ($errors->has('password_confirmation'))
+            <div class="form-group col-md-6">
+              <input placeholder="Confirme sua senha" id="password-confirm" type="password" class="form-control" name="password_confirmation"/>
+              <div class="validation"></div>
+            </div>
+                                 @if ($errors->has('password_confirmation'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('password_confirmation') }}</strong>
                                     </span>
                                 @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-btn fa-user"></i> Register
+            </center>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">
+                                    <i class="fa fa-btn fa-sign-in"></i> Cadastrar
                                 </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
             </div>
+            <br>
+            <div class="text-center"><a href="{{ url('/login') }}">Já é registrado? Faça login</a></div>
+          </form>
         </div>
-    </div>
-</div>
+        <br><br><br><br>
+      </div>
+    </section><!-- #contact -->
+
+  </main>
+
+
+  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+  <div id="preloader"></div>
+
+  <!-- JavaScript Libraries -->
+  <script src="lib/jquery/jquery.min.js"></script>
+  <script src="lib/jquery/jquery-migrate.min.js"></script>
+  <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="lib/easing/easing.min.js"></script>
+  <script src="lib/superfish/hoverIntent.js"></script>
+  <script src="lib/superfish/superfish.min.js"></script>
+  <script src="lib/wow/wow.min.js"></script>
+  <script src="lib/waypoints/waypoints.min.js"></script>
+  <script src="lib/counterup/counterup.min.js"></script>
+  <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+  <script src="lib/isotope/isotope.pkgd.min.js"></script>
+  <script src="lib/lightbox/js/lightbox.min.js"></script>
+  <script src="lib/touchSwipe/jquery.touchSwipe.min.js"></script>
+  <!-- Contact Form JavaScript File -->
+  <script src="contactform/contactform.js"></script>
+
+  <!-- Template Main Javascript File -->
+  <script src="js/main.js"></script>
+
+
+
+
 @endsection

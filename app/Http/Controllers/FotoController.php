@@ -9,6 +9,7 @@ use App\Http\Requests;
 use Illuminate\Support\facades\Input;
 use App\Foto;
 use DB;
+use Storage;
 
 class FotoController extends Controller
 {
@@ -39,25 +40,35 @@ class FotoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $dados)
+    public function store(Request $request)
     {
-       // $imagem = $dados->imagem;
-        //$descricao = $dados->descricao;
-        //echo "Imagem: $imagem";
-        //echo "Descricao: $descricao";
 
-        #usando Facade
+
+       $this->validate($request, [
+            'imagem' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $image = $request->file('imagem');
+
+        //return $image;
+
+    //    return $image;
+        //$image = $request->imagem;  // your base64 encoded
+       // $image = str_replace('data:image/png;base64,', '', $image);
+
+        $img = base64_encode(file_get_contents($image));
+        //$img = base64_encode($image);
+
         $foto = new Foto;
-        $id = auth()->user()->id ;
-        $foto->imagem = Input::get('imagem');
         $foto->descricao = Input::get('descricao');
-        $foto->cod_usuario = $id;
+        $foto->imagem = $img;
+         $foto->nome = "sdsd";
+        $foto->save();
 
-
-        // from Model
-        $foto->save ();
-
-        return redirect()->to (route('foto.inicio'));
+            //return $foto;
+        
+        //return  $img;
+       return redirect()->to(route('galeria.inicio'));
     }
 
     /**
@@ -104,4 +115,12 @@ class FotoController extends Controller
     {
         //
     }
+
+
+//    public function img(Request $request, $nome) {
+  //      $response = \Response::make(\Storage::disk('public')->get($nome), 200);
+    //        $response->header("Content-Type", \Storage::disk('public')->mimeType($nome))->header("Content-Size", \Storage::disk('public')->size($nome));
+      //  return $response;
+    //}
+
 }

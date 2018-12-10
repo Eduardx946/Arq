@@ -17,9 +17,10 @@ class GaleriaController extends Controller
     public function index()
     {
         //return view ('galeria'); 
+
         $foto = Foto::get();
 
-        return view ('galeria', compact('foto')); 
+        return view ('galery',['foto' => $foto]); 
     }
 
     /**
